@@ -42,6 +42,13 @@ namespace _6th_LAB_OOP
             designer.DrawAll(shapes, designer);
         }
 
+        private void RefreshWindow()
+        {
+            designer.Clear(); // Очищаем изображение, отрисовываем все фигуры и передаём изобажение pictureBox'у
+            designer.DrawAll(shapes, designer);
+            pictureBox.Image = designer.GetBitmap();
+        }
+
         private void NewShare(int x, int y)
         {
             if (current_shape == null)
@@ -86,9 +93,7 @@ namespace _6th_LAB_OOP
                 return;
             }
 
-            designer.Clear(); // Очищаем изображение, отрисовываем все окружности и передаём изобажение pictureBox'у
-            designer.DrawAll(shapes, designer);
-            pictureBox.Image = designer.GetBitmap();
+            RefreshWindow();
         }
 
 
@@ -155,9 +160,7 @@ namespace _6th_LAB_OOP
                             shapes.Get(i).ChangeSize('-');
                 }
             }
-            designer.Clear(); // Очищаем изображение, отрисовываем все окружности и передаём изобажение pictureBox'у
-            designer.DrawAll(shapes, designer);
-            pictureBox.Image = designer.GetBitmap();
+            RefreshWindow();
         }
 
         private void colorBtn_Click(object sender, EventArgs e)
@@ -175,9 +178,7 @@ namespace _6th_LAB_OOP
                 if (shapes.Get(i).IsSelected())
                     shapes.Get(i).ChangeColor(ColorTranslator.ToHtml(current_color));
 
-            designer.Clear(); // Очищаем изображение, отрисовываем все окружности и передаём изобажение pictureBox'у
-            designer.DrawAll(shapes, designer);
-            pictureBox.Image = designer.GetBitmap();
+            RefreshWindow();
         }
 
         private void shapesComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -197,6 +198,47 @@ namespace _6th_LAB_OOP
         {
             if ((e.Delta > 0) || e.Delta < 0)
                 ((HandledMouseEventArgs)e).Handled = true;
+        }
+
+        private void groupBtn_Click(object sender, EventArgs e)
+        {
+            CGroup group = new CGroup();
+
+            List order_to_delete = new List(); // Список CShape, которые мы удалим из списка всех CShape
+
+            for (int i = 0; i < shapes.GetSize(); i++) 
+                if (shapes.Get(i).IsSelected())
+                {
+                    order_to_delete.Add(shapes.Get(i)); 
+                    group.addShape(shapes.Get(i));
+                }
+
+            for (int i = 0; i < order_to_delete.GetSize(); i++)
+                shapes.Remove(order_to_delete.Get(i));
+
+            if (!group.isEmpty())
+                shapes.Add(group);
+
+            RefreshWindow();
+            ActiveControl = pictureBox;
+        }
+
+        private void ungroupBtn_Click(object sender, EventArgs e)
+        {
+            List order_to_add = new List(); // Список всех CShape, в которых храним те CShape, которые позже поместим в список всех CShape
+
+            for (int i = 0; i < shapes.GetSize(); i++)
+                if (shapes.Get(i) is CGroup group && shapes.Get(i).IsSelected()) {
+                    for (int j = 0; j < group.getSize(); j++)
+                        order_to_add.Add(group.getShape(j));
+                    shapes.Remove(group);
+                }
+
+            for (int i = 0; i < order_to_add.GetSize(); i++)
+                shapes.Add(order_to_add.Get(i));
+
+            RefreshWindow();
+            ActiveControl = pictureBox;
         }
     }
 }

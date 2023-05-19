@@ -33,7 +33,7 @@ namespace _6th_LAB_OOP
 
         public override void ChangeSize(char type)
         {
-            length += (type == '+') ? (canChange(0, 0, 5) ? 5 : 0) : (canChange(0, 0, -5) ? -5 : 0);
+            length += (type == '+') ? (CanChange(0, 0, 5) ? 5 : 0) : (CanChange(0, 0, -5) ? -5 : 0);
         }
 
         public override bool WasClicked(int x, int y)
@@ -41,7 +41,7 @@ namespace _6th_LAB_OOP
             return ((this.x - x) * (this.x - x) + (this.y - y) * (this.y - y) <= length * length);
         }
 
-        public override bool canChange(int dx, int dy, int dlength)
+        public override bool CanChange(int dx, int dy, int dlength)
         {
             return (x + dx + length + dlength < width &&
                     y + dy + length + dlength < height &&
@@ -97,7 +97,7 @@ namespace _6th_LAB_OOP
             return (a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0);
         }
 
-        public override bool canChange(int dx, int dy, int dlength)
+        public override bool CanChange(int dx, int dy, int dlength)
         {
             
             return (y + dy - length - dlength > 0 &&
@@ -111,7 +111,7 @@ namespace _6th_LAB_OOP
         {
             if (type == '+')
             {
-                if (canChange(0, 0, 5))
+                if (CanChange(0, 0, 5))
                 {
                     points[0].Y += -5;
                     points[1].X += -5;
@@ -122,7 +122,7 @@ namespace _6th_LAB_OOP
                 }
             } else
             {
-                if (canChange(0, 0, -5))
+                if (CanChange(0, 0, -5))
                 {
                     points[0].Y += 5;
                     points[1].X += 5;
@@ -177,13 +177,13 @@ namespace _6th_LAB_OOP
 
         public override void ChangeSize(char type)
         {
-            length += (type == '+' && canChange(0, 0, 5)) ? 5 : (type == '-' && canChange(0, 0, -5)) ? -5 : 0;
+            length += (type == '+' && CanChange(0, 0, 5)) ? 5 : (type == '-' && CanChange(0, 0, -5)) ? -5 : 0;
 
             x = points[0].X + length / 2;
             y = points[0].Y + length / 2;
         }
 
-        public override bool canChange(int dx, int dy, int dlength)
+        public override bool CanChange(int dx, int dy, int dlength)
         {
             return (x + length / 2 + dx + dlength / 2 < width - 5 &&
                     y + length / 2 + dy + dlength < height - 5 &&
@@ -202,6 +202,109 @@ namespace _6th_LAB_OOP
         }
 
         public override void Load()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class CGroup : CShape
+    {
+        List shapes; // Используем собственный список
+
+        public CGroup()
+        {
+            shapes = new List();
+        }
+
+        ~CGroup()
+        {
+            shapes.Clear();
+        }
+        
+        public int getSize() 
+        { 
+            return shapes.GetSize(); 
+        }
+
+        public bool isEmpty()
+        {
+            return shapes.GetSize() == 0;
+        }
+
+        public void addShape(CShape shape)
+        {
+            shapes.Add(shape);
+        }
+
+        public CShape getShape(int index)
+        {
+            return shapes.Get(index);
+        }
+
+        public override void Draw(Designer designer)
+        {
+            for (int i = 0; i < shapes.GetSize(); i++)
+                shapes.Get(i).Draw(designer);
+        }
+
+        public override void Select()
+        {
+            for (int i = 0; i < shapes.GetSize(); i++)
+                shapes.Get(i).Select();
+
+            is_selected = true;
+        }
+
+        public override void Unselect()
+        {
+            for (int i = 0; i < shapes.GetSize(); i++)
+                shapes.Get(i).Unselect();
+
+            is_selected = false;
+        }
+
+        public override void ChangeColor(string color)
+        {
+            for (int i = 0; i < shapes.GetSize(); i++)
+                shapes.Get(i).ChangeColor(color);
+        }
+
+        public override bool CanChange(int dx, int dy, int dlength)
+        {
+            for (int i = 0; i < shapes.GetSize(); i++)
+                if (!shapes.Get(i).CanChange(dx, dy, dlength))
+                    return false;
+            return true;
+        }
+
+        public override void ChangeSize(char type)
+        {
+            if (CanChange(0, 0, (type == '+') ? 5 : -5))
+                for (int i = 0; i < shapes.GetSize(); i++)
+                    shapes.Get(i).ChangeSize(type);
+        }
+
+        public override void Move(int dx, int dy)
+        {
+            if (CanChange(dx, dy, 0))
+                for (int i = 0; i < shapes.GetSize(); i++)
+                    shapes.Get(i).Move(dx, dy);
+        }
+
+        public override bool WasClicked(int x, int y)
+        {
+            for (int i = 0; i < shapes.GetSize(); i++)
+                if (shapes.Get(i).WasClicked(x, y))
+                    return true;
+            return false;
+        }
+
+        public override void Load()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Save()
         {
             throw new NotImplementedException();
         }

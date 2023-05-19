@@ -23,9 +23,9 @@ namespace _6th_LAB_OOP
         public virtual void Unselect() { is_selected = false; }
         public virtual bool IsSelected() { return is_selected; }
         public virtual void ChangeColor(string color) { this.color = color; }
-        public virtual void Move(int dx, int dy) { if (canChange(dx, dy, 0)) { x += dx; y += dy; } }
+        public virtual void Move(int dx, int dy) { if (CanChange(dx, dy, 0)) { x += dx; y += dy; } }
 
-        public abstract bool canChange(int dx, int dy, int dlength);
+        public abstract bool CanChange(int dx, int dy, int dlength);
         public abstract void ChangeSize(char type);
         public abstract bool WasClicked(int x, int y);
         public abstract void Draw(Designer designer);

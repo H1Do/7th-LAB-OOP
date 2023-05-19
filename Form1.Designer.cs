@@ -33,6 +33,8 @@
             this.chosedShare = new System.Windows.Forms.Label();
             this.shapesComboBox = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.groupBtn = new System.Windows.Forms.Button();
+            this.ungroupBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,9 +81,31 @@
             this.shapesComboBox.SelectedIndexChanged += new System.EventHandler(this.shapesComboBox_SelectedIndexChanged);
             this.shapesComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.shapesComboBox_KeyDown);
             // 
+            // groupBtn
+            // 
+            this.groupBtn.Location = new System.Drawing.Point(496, 476);
+            this.groupBtn.Name = "groupBtn";
+            this.groupBtn.Size = new System.Drawing.Size(75, 23);
+            this.groupBtn.TabIndex = 6;
+            this.groupBtn.Text = "Group";
+            this.groupBtn.UseVisualStyleBackColor = true;
+            this.groupBtn.Click += new System.EventHandler(this.groupBtn_Click);
+            // 
+            // ungroupBtn
+            // 
+            this.ungroupBtn.Location = new System.Drawing.Point(496, 505);
+            this.ungroupBtn.Name = "ungroupBtn";
+            this.ungroupBtn.Size = new System.Drawing.Size(75, 23);
+            this.ungroupBtn.TabIndex = 7;
+            this.ungroupBtn.Text = "Ungroup";
+            this.ungroupBtn.UseVisualStyleBackColor = true;
+            this.ungroupBtn.Click += new System.EventHandler(this.ungroupBtn_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(583, 536);
+            this.Controls.Add(this.ungroupBtn);
+            this.Controls.Add(this.groupBtn);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.chosedShare);
             this.Controls.Add(this.colorBtn);
@@ -98,27 +122,13 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel;
-        private System.Windows.Forms.Button btnSquare;
-        private System.Windows.Forms.Button btnTriangle;
-        private System.Windows.Forms.Button btnCircle;
-        private System.Windows.Forms.Panel colorPreview;
-        private System.Windows.Forms.Label lbPreview;
-        private System.Windows.Forms.Label lbChoose;
-        private System.Windows.Forms.ComboBox colorList;
-        private System.Windows.Forms.Button btnChangeColor;
-        private System.Windows.Forms.Button btnUngroup;
-        private System.Windows.Forms.Button btnGroup;
-        private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.Button btnSave;
-        public System.Windows.Forms.PictureBox sheet;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.TreeView shapesTree;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button colorBtn;
         private System.Windows.Forms.Label chosedShare;
         private System.Windows.Forms.ComboBox shapesComboBox;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button groupBtn;
+        private System.Windows.Forms.Button ungroupBtn;
     }
 }
 
