@@ -146,13 +146,13 @@ namespace _6th_LAB_OOP
                 {
                     for (int i = 0; i < shapes.GetSize(); i++)
                         if (shapes.Get(i).IsSelected())
-                            shapes.Get(i).ChangeSize((sbyte)'+');
+                            shapes.Get(i).ChangeSize('+');
                 }
                 else // Увеличиваем все фигуры
                 {
                     for (int i = 0; i < shapes.GetSize(); i++)
                         if (shapes.Get(i).IsSelected())
-                            shapes.Get(i).ChangeSize((sbyte)'-');
+                            shapes.Get(i).ChangeSize('-');
                 }
             }
             designer.Clear(); // Очищаем изображение, отрисовываем все окружности и передаём изобажение pictureBox'у
