@@ -18,9 +18,9 @@ namespace _6th_LAB_OOP
         private MyList shapes;
         private Designer designer;
         private CShapeFactory shapeFactory;
-        private Color current_color = Color.White;
+        private Color current_color;
         private String current_shape;
-        private String file_name;
+        private String file_name = "";
 
         private bool is_ctrl_pressed = false;
 
@@ -117,6 +117,14 @@ namespace _6th_LAB_OOP
                     for (int i = 0; i < order_to_delete.GetSize(); i++)
                         shapes.Remove(order_to_delete.Get(i));
                     break;
+                case Keys.S:
+                    if (file_name != "")
+                        saveBtn_Click(sender, e);
+                    break;
+                case Keys.V:
+                    if (file_name != "")
+                        loadBtn_Click(sender, e);
+                    break;
                 case Keys.Up: // Если это Up, то все выделенные фигуры движутся наверх
                     dx = 0; dy = -5;
                     break;
@@ -180,7 +188,7 @@ namespace _6th_LAB_OOP
 
             for (int i = 0; i < shapes.GetSize(); i++)
                 if (shapes.Get(i).IsSelected())
-                    shapes.Get(i).ChangeColor(ColorTranslator.ToHtml(current_color));
+                    shapes.Get(i).ChangeColor(current_color);
 
             RefreshWindow();
         }
@@ -276,6 +284,8 @@ namespace _6th_LAB_OOP
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 file_name = openFileDialog.FileName;
+                loadBtn.Enabled = true;
+                saveBtn.Enabled = true;
             }
             openFileDialog.Dispose();
         }

@@ -19,7 +19,7 @@ namespace _6th_LAB_OOP
         {
             this.x = x;
             this.y = y;
-            this.color = ColorTranslator.ToHtml(color);
+            this.color = color;
             this.length = 35; // Радиус
         }
 
@@ -27,7 +27,7 @@ namespace _6th_LAB_OOP
         {
             this.width = designer.getWidth();
             this.height = designer.getHeight();
-            designer.DrawCircle(x, y, length, is_selected, ColorTranslator.FromHtml(color));
+            designer.DrawCircle(x, y, length, is_selected, color);
         }
 
         public override void ChangeSize(char type)
@@ -63,7 +63,7 @@ namespace _6th_LAB_OOP
         public CTriangle(int x, int y, Color color)
         {
             this.x = x; this.y = y;
-            this.color = ColorTranslator.ToHtml(color);
+            this.color = color;
             this.length = 35; // Высота
 
             points[0].X = x; points[0].Y = y - length;
@@ -80,7 +80,7 @@ namespace _6th_LAB_OOP
             points[1].X = x - length; points[1].Y = y + length / 2;
             points[2].X = x + length; points[2].Y = y + length / 2;
 
-            designer.DrawTriangle(points, is_selected, ColorTranslator.FromHtml(color));
+            designer.DrawTriangle(points, is_selected, color);
         }
 
         public override bool WasClicked(int x, int y)
@@ -145,7 +145,7 @@ namespace _6th_LAB_OOP
             this.x = x;
             this.y = y;
 
-            this.color = ColorTranslator.ToHtml(color);
+            this.color = color;
 
             points[0].X = x - length / 2;
             points[0].Y = y - length / 2;
@@ -163,7 +163,7 @@ namespace _6th_LAB_OOP
             points[1].X = x + length / 2;
             points[1].Y = y + length / 2;
 
-            designer.DrawSquare(points[0].X, points[0].Y, length, is_selected, ColorTranslator.FromHtml(color));
+            designer.DrawSquare(points[0].X, points[0].Y, length, is_selected, color);
         }
 
         public override void ChangeSize(char type)
@@ -250,7 +250,7 @@ namespace _6th_LAB_OOP
             is_selected = false;
         }
 
-        public override void ChangeColor(string color)
+        public override void ChangeColor(Color color)
         {
             for (int i = 0; i < shapes.GetSize(); i++)
                 shapes.Get(i).ChangeColor(color);

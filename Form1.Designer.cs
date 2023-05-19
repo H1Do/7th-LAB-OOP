@@ -106,6 +106,7 @@
             // 
             // saveBtn
             // 
+            this.saveBtn.Enabled = false;
             this.saveBtn.Location = new System.Drawing.Point(464, 476);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(112, 23);
@@ -116,11 +117,12 @@
             // 
             // loadBtn
             // 
+            this.loadBtn.Enabled = false;
             this.loadBtn.Location = new System.Drawing.Point(464, 505);
             this.loadBtn.Name = "loadBtn";
             this.loadBtn.Size = new System.Drawing.Size(112, 23);
             this.loadBtn.TabIndex = 9;
-            this.loadBtn.Text = "Load (CTRL + L)";
+            this.loadBtn.Text = "Load (CTRL + V)";
             this.loadBtn.UseVisualStyleBackColor = true;
             this.loadBtn.Click += new System.EventHandler(this.loadBtn_Click);
             // 
