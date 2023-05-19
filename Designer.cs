@@ -65,10 +65,10 @@ namespace _6th_LAB_OOP
             brush.Dispose();
         }
 
-        public void DrawAll(List storage) // Отрисовать всех фигуры
+        public void DrawAll(List storage, Designer designer) // Отрисовать всех фигуры
         {
             for (int i = 0; i < storage.GetSize(); i++)
-                storage.Get(i).Draw();
+                storage.Get(i).Draw(designer);
         }
 
         public void UnselectAll(List storage) // Убираем подчеркивание со всех окружностей

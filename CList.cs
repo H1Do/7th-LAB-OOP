@@ -8,6 +8,7 @@ namespace _6th_LAB_OOP
         protected int length;
         protected int x, y;
         protected string color;
+        protected int height, width;
 
         public CShape()
         {
@@ -27,7 +28,9 @@ namespace _6th_LAB_OOP
         public abstract bool canChange(int dx, int dy, int dlength);
         public abstract void ChangeSize(char type);
         public abstract bool WasClicked(int x, int y);
-        public abstract void Draw();
+        public abstract void Draw(Designer designer);
+        public abstract void Save();
+        public abstract void Load();
     }
 
     public class Node

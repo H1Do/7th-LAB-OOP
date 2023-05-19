@@ -16,19 +16,18 @@ namespace _6th_LAB_OOP
 {
     public class CCircle : CShape
     {
-        private Designer designer;
-
-        public CCircle(int x, int y, Designer designer, Color color) // Конструктор окружности 
+        public CCircle(int x, int y, Color color) // Конструктор окружности 
         {
             this.x = x;
             this.y = y;
-            this.designer = designer;
             this.color = ColorTranslator.ToHtml(color);
             this.length = 35; // Радиус
         }
 
-        public override void Draw()
+        public override void Draw(Designer designer)
         {
+            this.width = designer.getWidth();
+            this.height = designer.getHeight();
             designer.DrawCircle(x, y, length, is_selected, ColorTranslator.FromHtml(color));
         }
 
@@ -44,24 +43,32 @@ namespace _6th_LAB_OOP
 
         public override bool canChange(int dx, int dy, int dlength)
         {
-            return (x + dx + length + dlength < designer.getWidth() &&
-                    y + dy + length + dlength < designer.getHeight() &&
+            return (x + dx + length + dlength < width &&
+                    y + dy + length + dlength < height &&
                     x + dx - length - dlength > 0 &&
                     y + dy - length - dlength > 0 &&
                     length + dlength > 5);
+        }
+
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Load()
+        {
+            throw new NotImplementedException();
         }
     }
 
     public class CTriangle : CShape
     {
         private Point[] points = new Point[3];
-        private Designer designer;
 
-        public CTriangle(int x, int y, Designer designer, Color color)
+        public CTriangle(int x, int y, Color color)
         {
             this.x = x; this.y = y;
             this.color = ColorTranslator.ToHtml(color);
-            this.designer = designer;
             this.length = 35; // Высота
 
             points[0].X = x; points[0].Y = y - length;
@@ -69,8 +76,11 @@ namespace _6th_LAB_OOP
             points[2].X = x + length; points[2].Y = y + length / 2;
         }
 
-        public override void Draw()
+        public override void Draw(Designer designer)
         {
+            this.height = designer.getHeight();
+            this.width = designer.getWidth();
+
             points[0].X = x; points[0].Y = y - length;
             points[1].X = x - length; points[1].Y = y + length / 2;
             points[2].X = x + length; points[2].Y = y + length / 2;
@@ -91,8 +101,8 @@ namespace _6th_LAB_OOP
         {
             
             return (y + dy - length - dlength > 0 &&
-                    y + length / 2 + dy + dlength / 2 < designer.getHeight() &&
-                    x + length + dx + dlength < designer.getWidth() &&
+                    y + length / 2 + dy + dlength / 2 < height &&
+                    x + length + dx + dlength < width &&
                     x - length + dx - dlength > 0 &&
                     length + dlength > 10);
         }
@@ -123,14 +133,22 @@ namespace _6th_LAB_OOP
                 }
             }
         }
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Load()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class CSquare : CShape
     {
         private Point[] points = new Point[2];
-        private Designer designer;
 
-        public CSquare(int x, int y, Designer designer, Color color)
+        public CSquare(int x, int y, Color color)
         {
             this.length = 50;
             this.x = x;
@@ -142,12 +160,13 @@ namespace _6th_LAB_OOP
             points[0].Y = y - length / 2;
             points[1].X = x + length / 2;
             points[1].Y = y + length / 2;
-
-            this.designer = designer;
         }
 
-        public override void Draw()
+        public override void Draw(Designer designer)
         {
+            this.height = designer.getHeight();
+            this.width = designer.getWidth();
+
             points[0].X = x - length / 2;
             points[0].Y = y - length / 2;
             points[1].X = x + length / 2;
@@ -166,8 +185,8 @@ namespace _6th_LAB_OOP
 
         public override bool canChange(int dx, int dy, int dlength)
         {
-            return (x + length / 2 + dx + dlength / 2 < designer.getWidth() - 5 &&
-                    y + length / 2 + dy + dlength < designer.getHeight() - 5 &&
+            return (x + length / 2 + dx + dlength / 2 < width - 5 &&
+                    y + length / 2 + dy + dlength < height - 5 &&
                     x - length / 2 + dx - dlength > 5 &&
                     y - length / 2 + dy - dlength > 5 &&
                     length > 10);
@@ -176,6 +195,15 @@ namespace _6th_LAB_OOP
         public override bool WasClicked(int x, int y)
         {
             return x >= this.x - length / 2 && y >= this.y - length / 2 && x <= this.x + length / 2 && y <= this.y + length / 2;
+        }
+        public override void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Load()
+        {
+            throw new NotImplementedException();
         }
     }
 }

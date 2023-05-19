@@ -39,7 +39,7 @@ namespace _6th_LAB_OOP
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            designer.DrawAll(shapes);
+            designer.DrawAll(shapes, designer);
         }
 
         private void NewShare(int x, int y)
@@ -48,20 +48,20 @@ namespace _6th_LAB_OOP
                 return;
 
             designer.UnselectAll(shapes);
-            designer.DrawAll(shapes);
+            designer.DrawAll(shapes, designer);
 
             CShape new_obj;
 
             if (this.current_shape == "Circle")
-                new_obj = new CCircle(x, y, designer, current_color);
+                new_obj = new CCircle(x, y, current_color);
             else if (this.current_shape == "Triangle")
-                new_obj = new CTriangle(x, y, designer, current_color);
+                new_obj = new CTriangle(x, y, current_color);
             else if (this.current_shape == "Square")
-                new_obj = new CSquare(x, y, designer, current_color);
+                new_obj = new CSquare(x, y, current_color);
             else
                 return;
 
-            new_obj.Draw();
+            new_obj.Draw(designer);
             pictureBox.Image = designer.GetBitmap();
             shapes.Add(new_obj);
         }
@@ -87,7 +87,7 @@ namespace _6th_LAB_OOP
             }
 
             designer.Clear(); // Очищаем изображение, отрисовываем все окружности и передаём изобажение pictureBox'у
-            designer.DrawAll(shapes);
+            designer.DrawAll(shapes, designer);
             pictureBox.Image = designer.GetBitmap();
         }
 
@@ -128,7 +128,7 @@ namespace _6th_LAB_OOP
 
 
             designer.Clear(); // Очищаем изображение, отрисовываем все окружности и передаём изобажение pictureBox'у
-            designer.DrawAll(shapes);
+            designer.DrawAll(shapes, designer);
             pictureBox.Image = designer.GetBitmap();
         }
 
@@ -156,7 +156,7 @@ namespace _6th_LAB_OOP
                 }
             }
             designer.Clear(); // Очищаем изображение, отрисовываем все окружности и передаём изобажение pictureBox'у
-            designer.DrawAll(shapes);
+            designer.DrawAll(shapes, designer);
             pictureBox.Image = designer.GetBitmap();
         }
 
@@ -176,7 +176,7 @@ namespace _6th_LAB_OOP
                     shapes.Get(i).ChangeColor(ColorTranslator.ToHtml(current_color));
 
             designer.Clear(); // Очищаем изображение, отрисовываем все окружности и передаём изобажение pictureBox'у
-            designer.DrawAll(shapes);
+            designer.DrawAll(shapes, designer);
             pictureBox.Image = designer.GetBitmap();
         }
 
