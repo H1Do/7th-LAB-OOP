@@ -15,18 +15,22 @@ namespace _6th_LAB_OOP
 {
     public partial class Form1 : Form
     {
-        private List shapes;
+        private MyList shapes;
         private Designer designer;
+        private CShapeFactory shapeFactory;
         private Color current_color = Color.White;
         private String current_shape;
+        private String file_name;
 
         private bool is_ctrl_pressed = false;
 
         public Form1()
         {
             InitializeComponent();
-            shapes = new List();
+            shapes = new MyList();
             designer = new Designer(pictureBox.Width, pictureBox.Height);
+            shapeFactory = new CMyShapeFactory();
+
             this.MouseWheel += new MouseEventHandler(this_MouseWheel); // Изменение размера фигуры вращением колёсика
             this.MouseWheel += new MouseEventHandler(shapesComboBox_MouseWheel); // Запрещаем управление comboBox с помощью колеса
             shapesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList; // Запрещаем ввод своих значений в combobox
@@ -239,6 +243,41 @@ namespace _6th_LAB_OOP
 
             RefreshWindow();
             ActiveControl = pictureBox;
+        }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            if (file_name == "")
+                return;
+
+            StreamWriter stream = new StreamWriter(file_name, false);
+            stream.WriteLine(shapes.GetSize());
+            for (int i = 0; i < shapes.GetSize(); i++)
+                shapes.Get(i).Save(stream);
+            stream.Close();
+        }
+
+        private void loadBtn_Click(object sender, EventArgs e)
+        {
+            if (file_name == "")
+                return;
+            shapes.Clear();
+
+            StreamReader stream = new StreamReader(file_name, false);
+            shapes.LoadShapes(stream, shapeFactory);
+            stream.Close();
+
+            RefreshWindow();
+        }
+
+        private void fileDialogBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                file_name = openFileDialog.FileName;
+            }
+            openFileDialog.Dispose();
         }
     }
 }

@@ -89,7 +89,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CList.cs" />
+    <Compile Include="List.cs" />
+    <Compile Include="MyList.cs" />
     <Compile Include="Shapes.cs" />
     <Compile Include="CMyShapeFactory.cs" />
     <Compile Include="Designer.cs" />

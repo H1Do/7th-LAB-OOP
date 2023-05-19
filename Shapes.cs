@@ -10,7 +10,6 @@ using System.Data;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices.ComTypes;
-using System.IO;
 
 namespace _6th_LAB_OOP
 {
@@ -50,14 +49,10 @@ namespace _6th_LAB_OOP
                     length + dlength > 5);
         }
 
-        public override void Save()
+        public override void Save(StreamWriter stream)
         {
-            throw new NotImplementedException();
-        }
-
-        public override void Load()
-        {
-            throw new NotImplementedException();
+            stream.WriteLine("C");
+            base.Save(stream);
         }
     }
 
@@ -133,14 +128,10 @@ namespace _6th_LAB_OOP
                 }
             }
         }
-        public override void Save()
+        public override void Save(StreamWriter stream)
         {
-            throw new NotImplementedException();
-        }
-
-        public override void Load()
-        {
-            throw new NotImplementedException();
+            stream.WriteLine("T");
+            base.Save(stream);
         }
     }
 
@@ -196,14 +187,10 @@ namespace _6th_LAB_OOP
         {
             return x >= this.x - length / 2 && y >= this.y - length / 2 && x <= this.x + length / 2 && y <= this.y + length / 2;
         }
-        public override void Save()
+        public override void Save(StreamWriter stream)
         {
-            throw new NotImplementedException();
-        }
-
-        public override void Load()
-        {
-            throw new NotImplementedException();
+            stream.WriteLine("S");
+            base.Save(stream);
         }
     }
 
@@ -299,14 +286,24 @@ namespace _6th_LAB_OOP
             return false;
         }
 
-        public override void Load()
+        public override void Save(StreamWriter stream)
         {
-            throw new NotImplementedException();
+            stream.WriteLine("G");
+            stream.WriteLine(getSize());
+            for (int i = 0; i < getSize(); i++)
+                getShape(i).Save(stream);
         }
 
-        public override void Save()
+        public override void Load(StreamReader stream, CShapeFactory shapeFactory)
         {
-            throw new NotImplementedException();
+            char code; int size = Convert.ToInt32(stream.ReadLine());
+
+            for (int i = 0; i < size; i++)
+            {
+                code = Convert.ToChar(stream.ReadLine());
+                addShape(shapeFactory.createShape(code));
+                getShape(getSize() - 1).Load(stream, shapeFactory);
+            }
         }
     }
 }

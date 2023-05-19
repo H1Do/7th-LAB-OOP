@@ -35,6 +35,9 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBtn = new System.Windows.Forms.Button();
             this.ungroupBtn = new System.Windows.Forms.Button();
+            this.saveBtn = new System.Windows.Forms.Button();
+            this.loadBtn = new System.Windows.Forms.Button();
+            this.fileDialogBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,10 +63,10 @@
             // chosedShare
             // 
             this.chosedShare.AutoSize = true;
-            this.chosedShare.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.chosedShare.Location = new System.Drawing.Point(200, 485);
+            this.chosedShare.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.chosedShare.Location = new System.Drawing.Point(63, 505);
             this.chosedShare.Name = "chosedShare";
-            this.chosedShare.Size = new System.Drawing.Size(0, 42);
+            this.chosedShare.Size = new System.Drawing.Size(0, 25);
             this.chosedShare.TabIndex = 4;
             // 
             // shapesComboBox
@@ -83,7 +86,7 @@
             // 
             // groupBtn
             // 
-            this.groupBtn.Location = new System.Drawing.Point(496, 476);
+            this.groupBtn.Location = new System.Drawing.Point(190, 476);
             this.groupBtn.Name = "groupBtn";
             this.groupBtn.Size = new System.Drawing.Size(75, 23);
             this.groupBtn.TabIndex = 6;
@@ -93,7 +96,7 @@
             // 
             // ungroupBtn
             // 
-            this.ungroupBtn.Location = new System.Drawing.Point(496, 505);
+            this.ungroupBtn.Location = new System.Drawing.Point(190, 505);
             this.ungroupBtn.Name = "ungroupBtn";
             this.ungroupBtn.Size = new System.Drawing.Size(75, 23);
             this.ungroupBtn.TabIndex = 7;
@@ -101,9 +104,42 @@
             this.ungroupBtn.UseVisualStyleBackColor = true;
             this.ungroupBtn.Click += new System.EventHandler(this.ungroupBtn_Click);
             // 
+            // saveBtn
+            // 
+            this.saveBtn.Location = new System.Drawing.Point(464, 476);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(112, 23);
+            this.saveBtn.TabIndex = 8;
+            this.saveBtn.Text = "Save (CTRL + C)";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
+            // loadBtn
+            // 
+            this.loadBtn.Location = new System.Drawing.Point(464, 505);
+            this.loadBtn.Name = "loadBtn";
+            this.loadBtn.Size = new System.Drawing.Size(112, 23);
+            this.loadBtn.TabIndex = 9;
+            this.loadBtn.Text = "Load (CTRL + L)";
+            this.loadBtn.UseVisualStyleBackColor = true;
+            this.loadBtn.Click += new System.EventHandler(this.loadBtn_Click);
+            // 
+            // fileDialogBtn
+            // 
+            this.fileDialogBtn.Location = new System.Drawing.Point(383, 476);
+            this.fileDialogBtn.Name = "fileDialogBtn";
+            this.fileDialogBtn.Size = new System.Drawing.Size(75, 23);
+            this.fileDialogBtn.TabIndex = 10;
+            this.fileDialogBtn.Text = "Choose File";
+            this.fileDialogBtn.UseVisualStyleBackColor = true;
+            this.fileDialogBtn.Click += new System.EventHandler(this.fileDialogBtn_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(583, 536);
+            this.Controls.Add(this.fileDialogBtn);
+            this.Controls.Add(this.loadBtn);
+            this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.ungroupBtn);
             this.Controls.Add(this.groupBtn);
             this.Controls.Add(this.pictureBox);
@@ -129,6 +165,9 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button groupBtn;
         private System.Windows.Forms.Button ungroupBtn;
+        private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.Button loadBtn;
+        private System.Windows.Forms.Button fileDialogBtn;
     }
 }
 

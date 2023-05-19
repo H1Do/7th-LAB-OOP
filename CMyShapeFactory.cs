@@ -9,13 +9,13 @@ using System.Drawing;
 
 namespace _6th_LAB_OOP
 {
-    public abstract class CShapeFactory
+    public abstract class CShapeFactory // Абстрактная фабрика для фигур
     {
         public abstract CShape createShape(char code);
         ~CShapeFactory() { }
     }
 
-    public class CMyShapeFactory : CShapeFactory
+    public class CMyShapeFactory : CShapeFactory // Вполне конкретная фабрика для CCircle, CTriangle, CSquare и CGroup
     {
         public override CShape createShape(char code)
         {
@@ -32,7 +32,7 @@ namespace _6th_LAB_OOP
                     shape = new CSquare(0, 0, Color.White);
                     break;
                 case 'G':
-                    shape = null;
+                    shape = new CGroup();
                     break;
             }
             return shape;

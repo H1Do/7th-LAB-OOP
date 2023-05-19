@@ -1,4 +1,7 @@
 using System;
+using System.IO;
+using System.Runtime;
+using System.Drawing
 
 namespace _6th_LAB_OOP
 {
@@ -10,27 +13,50 @@ namespace _6th_LAB_OOP
         protected string color;
         protected int height, width;
 
-        public CShape()
-        {
-            is_selected = false;
-            length = 0;
-            x = 0;
-            y = 0;
-            color = "";
-        }
-
         public virtual void Select() { is_selected = true; }
         public virtual void Unselect() { is_selected = false; }
         public virtual bool IsSelected() { return is_selected; }
         public virtual void ChangeColor(string color) { this.color = color; }
         public virtual void Move(int dx, int dy) { if (CanChange(dx, dy, 0)) { x += dx; y += dy; } }
+        public virtual void Load(StreamReader stream, CShapeFactory shapeFactory) {
+            string line = stream.ReadLine();
+            string temp_str = "";
+            int[] input = new int[3];
+            int j = 0;
+            color = "";
+
+            for (int i = 0; i < line.Length; i++)
+            {
+                if (Char.IsNumber(line[i]))
+                {
+                    temp_str += line[i];
+                }
+                else if (Char.IsWhiteSpace(line[i]))
+                {
+                    input[j++] = Convert.ToInt32(temp_str);
+                    temp_str = "";
+                } else
+                {
+                    color += line[i];
+                }
+            }
+
+            x = input[0];
+            y = input[1];
+            length = input[2];
+        }
+
+        public virtual void Save(StreamWriter stream) {
+            stream.Write(x.ToString() + " ");
+            stream.Write(y.ToString() + " ");
+            stream.Write(length.ToString() + " ");
+            stream.WriteLine(color);
+        }
 
         public abstract bool CanChange(int dx, int dy, int dlength);
         public abstract void ChangeSize(char type);
         public abstract bool WasClicked(int x, int y);
         public abstract void Draw(Designer designer);
-        public abstract void Save();
-        public abstract void Load();
     }
 
     public class Node
