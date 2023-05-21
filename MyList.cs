@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
+using _List;
+using _CShapeFactory;
 
-namespace _6th_LAB_OOP
+namespace _MyList
 {
     public class MyList : List
     {

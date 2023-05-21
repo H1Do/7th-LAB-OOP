@@ -73,9 +73,6 @@
     <StartupObject>_6th_LAB_OOP.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="StorageClassLibrary">
-      <HintPath>StorageClassLibrary\x64\Debug\StorageClassLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -89,6 +86,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CShape.cs" />
+    <Compile Include="CShapeFactory.cs" />
     <Compile Include="List.cs" />
     <Compile Include="MyList.cs" />
     <Compile Include="Shapes.cs" />

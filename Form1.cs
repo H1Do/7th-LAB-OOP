@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using StorageClassLibrary;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using _MyList;
+using _List;
+using _Designer;
+using _CShapeFactory;
+using _CMyShapeFactory;
+using _Shapes;
+using _CShape;
+
 
 namespace _6th_LAB_OOP
 {
