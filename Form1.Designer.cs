@@ -111,7 +111,7 @@
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(112, 23);
             this.saveBtn.TabIndex = 8;
-            this.saveBtn.Text = "Save (CTRL + C)";
+            this.saveBtn.Text = "Save (CTRL + S)";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 

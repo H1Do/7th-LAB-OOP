@@ -117,24 +117,29 @@ namespace _6th_LAB_OOP
                     for (int i = 0; i < order_to_delete.GetSize(); i++)
                         shapes.Remove(order_to_delete.Get(i));
                     break;
-                case Keys.S:
-                    if (file_name != "")
-                        saveBtn_Click(sender, e);
-                    break;
                 case Keys.V:
-                    if (file_name != "")
-                        loadBtn_Click(sender, e);
+                    if (is_ctrl_pressed)
+                        if (file_name != "")
+                            loadBtn_Click(sender, e);
                     break;
-                case Keys.Up: // Если это Up, то все выделенные фигуры движутся наверх
+                case Keys.W: // Если это Up, то все выделенные фигуры движутся наверх
                     dx = 0; dy = -5;
                     break;
-                case Keys.Down: // Если это Down, то все выделенные фигуры движутся вниз
-                    dx = 0; dy = 5;
+                case Keys.S: // Если это Down, то все выделенные фигуры движутся вниз
+                    if (is_ctrl_pressed)
+                    {
+                        if (file_name != "")
+                            saveBtn_Click(sender, e);
+                    }
+                    else
+                    {
+                        dx = 0; dy = 5;
+                    }
                     break;
-                case Keys.Left: // Если это Left, то все выделенные фигуры движутся влево
+                case Keys.A: // Если это Left, то все выделенные фигуры движутся влево
                     dx = -5; dy = 0;
                     break;
-                case Keys.Right: // Если это Right, то все выделенные фигуры движутся вправо
+                case Keys.D: // Если это Right, то все выделенные фигуры движутся вправо
                     dx = 5; dy = 0;
                     break; 
             }
@@ -224,12 +229,15 @@ namespace _6th_LAB_OOP
                     order_to_delete.Add(shapes.Get(i)); 
                     group.addShape(shapes.Get(i));
                 }
+            
+            if (group.getSize() > 1)
+            {
+                for (int i = 0; i < order_to_delete.GetSize(); i++)
+                    shapes.Remove(order_to_delete.Get(i));
 
-            for (int i = 0; i < order_to_delete.GetSize(); i++)
-                shapes.Remove(order_to_delete.Get(i));
-
-            if (!group.isEmpty())
-                shapes.Add(group);
+                group.Select();
+                shapes.Add(group);  
+            }
 
             RefreshWindow();
             ActiveControl = pictureBox;
